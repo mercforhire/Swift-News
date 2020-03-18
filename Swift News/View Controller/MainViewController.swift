@@ -8,6 +8,13 @@
 
 import UIKit
 
+// The 'main' view should implement a tableView or collectionView that displays a list of the articles. If the
+// article contains a thumbnail image, we should display that image in the cell with the article title on top
+// of the image. If the article doesn't contain an image, just display the article title. The cells should size to
+// accommodate for the image, preserving aspect ratio. If the cell is just text, make sure to shrink the cell
+// to the size of the title. This 'main' view should be presented inside of a navigation controller, with the
+// title "Swift News".
+
 class MainViewController: BaseViewController {
     var feedService: FeedService!
     
@@ -79,13 +86,8 @@ class MainViewController: BaseViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = feedItems[indexPath.row].data
-        
-        if let url = URL(string: item.url) {
-            let vc = vcFactory.createDetailsViewController(title: item.title,
-                                                           thumbnailUrl: URL(string: item.thumbnail),
-                                                           webUrl: url)
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = vcFactory.createDetailsViewController(title: item.title, feedItem: item)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

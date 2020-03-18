@@ -63,6 +63,9 @@ class HttpOperationsManager {
         getTask.resume()
     }
     
+    /**
+    Used to download an image
+    */
     func download(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
         session.dataTask(with: url) { (data, response, error) in
             if let error = error {

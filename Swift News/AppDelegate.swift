@@ -24,17 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        // init the dependencies in order:
         initDependencies()
 
-        // If you don't want to use storyboards, here's something to get you started.
-        // Just remember to delete the storyboard and remove it's reference in the project settings.
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
         if navigationController == nil, let vcFactory = vcFactory {
             navigationController = UINavigationController(rootViewController: vcFactory.createMainViewController())
         }
-        
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         

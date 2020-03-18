@@ -9,9 +9,13 @@
 import UIKit
 import WebKit
 
+// Once we can scroll a list of articles, we will want a way to display the full article in a new view. In the
+// case the article contains a thumbnail image, we'd like to show that image at the top of the article and
+// article body. If no thumbnail, just article body. There should also be a way to return to the 'main' view.
+// The navigation bar title should contain the article title.
+
 class DetailsViewController: BaseViewController {
-    var thumbnailUrl: URL?
-    var webUrl: URL!
+    var feedItem: FeedItem!
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var webView: WKWebView!
@@ -35,7 +39,7 @@ class DetailsViewController: BaseViewController {
     
     private func loadContents() {
         // load thumbnail if exists
-        if let thumbnailUrl = thumbnailUrl {
+        if let thumbnailUrl = URL(string: feedItem.thumbnail)  {
             UIImage.asyncFrom(url: thumbnailUrl, completion: { [weak self] result in
                 guard let self = self else { return }
                 
@@ -53,7 +57,9 @@ class DetailsViewController: BaseViewController {
         }
         
         // load actual content
-        let request = URLRequest(url: webUrl)
-        webView.load(request)
+        if let webUrl = URL(string: feedItem.url)  {
+            let request = URLRequest(url: webUrl)
+            webView.load(request)
+        }
     }
 }

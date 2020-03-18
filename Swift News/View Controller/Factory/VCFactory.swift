@@ -32,12 +32,11 @@ class VCFactory {
         return vc
     }
     
-    func createDetailsViewController(title: String, thumbnailUrl: URL? = nil, webUrl: URL) -> DetailsViewController {
+    func createDetailsViewController(title: String, feedItem: FeedItem) -> DetailsViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
         initBaseVC(baseVC: vc)
         vc.title = title
-        vc.thumbnailUrl = thumbnailUrl
-        vc.webUrl = webUrl
+        vc.feedItem = feedItem
         return vc
     }
 }
