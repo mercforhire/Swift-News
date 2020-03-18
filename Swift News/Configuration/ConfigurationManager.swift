@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- This class is used to gain access to values stored in Environments.plist
+ This class is used to gain access to values stored in environments.plist
  */
 class ConfigurationManager {
     private let kEnvironmentsPlistFileName : String = "environments"

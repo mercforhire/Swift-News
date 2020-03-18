@@ -8,7 +8,6 @@
 
 import Foundation
 
-// Implementation Service used to fetch the ExchangeRates from the server or cache
 class FeedServiceImpl: FeedService {
     private let kFetchFeedURL: String = "r/swift/.json"
     
