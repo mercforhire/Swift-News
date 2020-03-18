@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- Definition of the service used to fetch the ExchangeRates from the server or cache
+ Definition of the service used to fetch the the feed data
  */
 protocol FeedService {
     init(configurationManager: ConfigurationManager, httpOperationsManager: HttpOperationsManager)
